@@ -3,26 +3,34 @@ const db = new Sequelize('postgres://localhost:5432/wikistack', {
   logging: false,
 });
 
-const Page = db.define('page', {
-  title: {
-    type: Sequelize.STRING,
-    allowNull: false,
+const Page = db.define(
+  'page',
+  {
+    title: {
+      type: Sequelize.STRING,
+      allowNull: false,
+    },
+    slug: {
+      type: Sequelize.STRING,
+      allowNull: false,
+    },
+    content: {
+      type: Sequelize.TEXT,
+      allowNull: false,
+    },
+    status: {
+      type: Sequelize.ENUM('open', 'closed'),
+    },
   },
-  slug: {
-    type: Sequelize.STRING,
-    allowNull: false,
-  },
-  content: {
-    type: Sequelize.TEXT,
-    allowNull: false,
-  },
-  status: {
-    type: Sequelize.ENUM('open', 'closed'),
-  },
-    beforeValidate: () => {
-      this.title.replace(/\s+/g, '_').replace(/\W/g, '')
+  {
+    hooks: {
+      // type: Sequelize.STRING,
+      beforeValidate: (page, options) => {
+        page.slug = page.title.replace(/\s+/g, '_').replace(/\W/g, '');
+      },
+    },
   }
-});
+);
 
 const User = db.define('user', {
   name: {
@@ -39,4 +47,3 @@ const User = db.define('user', {
 });
 
 module.exports = { db, Page, User };
-
