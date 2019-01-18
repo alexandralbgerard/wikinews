@@ -6,9 +6,21 @@ module.exports = () => layout(html`
   <hr>
   <form method="POST" action="/wiki/">
     
-    <div>PLACEHOLDER FOR AUTHOR NAME FIELD</div>
+
+    <div class="form-group">
+    <label for="authorName" class="col-sm-2 control-label">Author Name</label>
+    <div class="col-sm-10">
+      <input id="authorName" name="authorName" type="string" class="form-control"/>
+    </div>
+  </div>
     
-    <div>PLACEHOLDER FOR AUTHOR EMAIL FIELD</div>
+
+    <div class="form-group">
+    <label for="email" class="col-sm-2 control-label">E-Mail</label>
+    <div class="col-sm-10">
+      <input id="email" name="email" type="string" class="form-control"/>
+    </div>
+  </div>
     
     <div class="form-group">
       <label for="title" class="col-sm-2 control-label">Page Title</label>
@@ -17,9 +29,21 @@ module.exports = () => layout(html`
       </div>
     </div>
 
-    <div>PLACEHOLDER FOR PAGE CONTENT TEXTAREA FIELD</div>
+
+    <div class="form-group">
+    <label for="content" class="col-sm-2 control-label">Content</label>
+    <div class="col-sm-10">
+      <input id="content" name="content" type="text" class="form-control"/>
+    </div>
+  </div>
     
-    <div>PLACEHOLDER FOR PAGE STATUS INPUT FIELD</div>
+
+    <div class="form-group">
+    <label for="status" class="col-sm-2 control-label">Status</label>
+    <div class="col-sm-10">
+      <input id="status" name="status" type="enum" class="form-control"/>
+    </div>
+  </div>
 
     <div class="col-sm-offset-2 col-sm-10">
       <button type="submit" class="btn btn-primary">submit</button>

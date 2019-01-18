@@ -3,6 +3,11 @@ const express = require('express');
 const app = express();
 const { db } = require('./models');
 const models = require('./models');
+const wikiRoute = require('./routes/wiki')
+const userRoute = require('./routes/user')
+
+app.use('/wiki', wikiRoute)
+app.use('/user', userRoute)
 
 app.use(volleyball);
 
@@ -16,8 +21,7 @@ db.authenticate().then(() => {
 });
 
 app.get('/', (req, res, next) => {
-  //console.log('hello world!');
-  res.send('hello world');
+  res.redirect('/wiki');
 });
 
 const init = async () => {

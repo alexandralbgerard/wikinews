@@ -19,6 +19,9 @@ const Page = db.define('page', {
   status: {
     type: Sequelize.ENUM('open', 'closed'),
   },
+    beforeValidate: () => {
+      this.title.replace(/\s+/g, '_').replace(/\W/g, '')
+  }
 });
 
 const User = db.define('user', {
@@ -36,3 +39,4 @@ const User = db.define('user', {
 });
 
 module.exports = { db, Page, User };
+
